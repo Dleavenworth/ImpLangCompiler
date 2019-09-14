@@ -3,13 +3,14 @@ import lexer
 IDENTIFIER = 'IDENTIFIER'
 NUMBER = 'NUMBER'
 PUNCTUATION = 'PUNCTUATION'
+IGNORE = 'IGNORE'
 
 token_list = [
-    (r'[\n\t]+', None),
-    (r'#[^\n]*', None),
-    (r'[A-Za-z][A-Za-z0-9_]*', IDENTIFIER),
+    (r'[\n|\t]+', IGNORE),
+    (r'#[^\n]*', IGNORE),
+    (r'\t|\-|\*|\|\(| \)', PUNCTUATION),
     (r'[0-9]+', NUMBER),
-    (r'\t | \- | \* | \ | \(| \)', PUNCTUATION)
+    (r'([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*', IDENTIFIER),
 ]
 
 

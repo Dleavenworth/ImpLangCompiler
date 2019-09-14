@@ -12,12 +12,14 @@ def lexer(token_list, characters):
             match = regex.match(characters, position)
             if match:
                 text = match.group(0)
-                if tag:
+                if tag is not 'IGNORE':
                     token = (text, tag)
                     tokens.append(token)
-                break
+                    position = match.end(0)
+                else:
+                    position = position+1
             if not match:
-                return None
-            else:
-                position = match.end(0)
-            return tokens
+                if match is None:
+                    position = position+1
+                print("Does not match")
+    return tokens

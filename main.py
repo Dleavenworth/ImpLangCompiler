@@ -5,8 +5,9 @@ import lang_lexer
 if __name__ == '__main__':
     # file_name = sys.argv[1]
     # print(file_name)
-    with open("main.imp") as f:
-        characters = f.read()
+    file = open("main.imp")
+    characters = file.read()
+    file.close()
     tokens = lang_lexer.lang_lexer(characters)
-    print ("done")
-
+    for token in tokens:
+        print (token)
