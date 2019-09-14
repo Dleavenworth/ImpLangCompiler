@@ -4,7 +4,7 @@ import re
 def lexer(token_list, characters):
     tokens = []
     position = 0
-    for position in len(characters):
+    while position < len(characters):
         match = None
         for token_expr in token_list:
             regex_pattern, tag = token_expr

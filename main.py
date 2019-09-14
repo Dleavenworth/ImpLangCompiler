@@ -2,9 +2,11 @@ import sys
 import lang_lexer
 
 
-def main():
-    characters = []
-    with open(sys.argv[1]) as f:
-        for line in f:
-            characters.append(line)
-    lang_lexer.lang_lexer(characters)
+if __name__ == '__main__':
+    # file_name = sys.argv[1]
+    # print(file_name)
+    with open("main.imp") as f:
+        characters = f.read()
+    tokens = lang_lexer.lang_lexer(characters)
+    print ("done")
+
