@@ -1,13 +1,16 @@
-import sys
-import lang_lexer
+# David Leavenworth III
+# Phase 1.1
 
+import sys
+import token_writer
+import scanner
 
 if __name__ == '__main__':
-    # file_name = sys.argv[1]
-    # print(file_name)
-    file = open("main.imp")
+    in_file = sys.argv[1]
+    out_file = sys.argv[2]
+    file = open(in_file)
     characters = file.read()
     file.close()
-    tokens = lang_lexer.lang_lexer(characters)
-    for token in tokens:
-        print (token)
+    line_results = scanner.scan_buffer(characters)
+    with open(out_file, 'w') as f:
+        token_writer.token_writer(f, line_results)

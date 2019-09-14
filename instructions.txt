@@ -1,0 +1,7 @@
+David Leavenworth III
+Project Phase 1.1
+
+There is no compilation, unzip then run main.py with the first argument as the input file, and the second argument as the output file. Example below:
+
+    unzip DavidLeavenworthProjectPhase1.1.zip
+    python main.py test_input_file.txt output_file.txt
