@@ -1,5 +1,6 @@
 # David Leavenworth III
 # Phase 1.1
+# Credit to Jay Conrod for inspiration: http://jayconrod.com/posts/37/a-simple-interpreter-from-scratch-in-python--part-1-
 
 import re
 import token_definitions
