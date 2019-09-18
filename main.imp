@@ -1,6 +1,7 @@
-abcd
-&
-123
-2we
-45)
-catfood-45
+x32 := 36 - y;
+if y then
+    x32 :=0; skip
+else
+    whiley := 12^2
+    x:= x32
+endif
