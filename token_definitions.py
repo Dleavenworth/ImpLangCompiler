@@ -13,6 +13,6 @@ token_list = [
     # (r'#.*$', IGNORE), In case we want to handle comments later
     (r'(?:\+|\-|\*|\/|\(|\)|(:=)|(;))', PUNCTUATION),
     (r'[0-9]+', NUMBER),
-    (r'(?:(if)|(then)|(else)|(endif)|(while)|(do)|(endwhile)|(skip))', KEYWORD),
+    (r'(?:(if)|(then)|(else)|(endif)|(while)|(do)|(endwhile)|(skip))(?!\S)', KEYWORD),
     (r'([a-zA-Z])([a-zA-Z0-9])*', IDENTIFIER),
 ]

@@ -1,6 +1,7 @@
 # David Leavenworth III
 # Phase 1.1
 
+
 def token_writer(output_file, token_list):
     for line_tuple in token_list:
         raw, tokens = line_tuple
