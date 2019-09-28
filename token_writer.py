@@ -1,5 +1,6 @@
 # David Leavenworth III
-# Phase 1.1
+# Phase 1.2
+# This is a helper function which just prints out the console output
 
 
 def token_writer(output_file, token_list):

@@ -1,6 +1,6 @@
 # David Leavenworth III
-# Phase 1.1
-
+# Phase 1.2
+# This is the test driver code for the lexer
 
 import sys
 import token_writer

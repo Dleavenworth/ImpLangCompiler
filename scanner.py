@@ -1,5 +1,7 @@
 # David Leavenworth III
-# Phase 1.1
+# Phase 1.2
+# This is a helper function to print out all of the lines to a console
+# it just splits all of the lines into entries in the line_results list
 
 import lexer
 

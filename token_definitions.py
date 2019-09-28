@@ -1,5 +1,6 @@
 # David Leavenworth III
-# Phase 1.1
+# Phase 1.2
+# This is the file where all of the regex expressions are defined as a list of all of them
 
 IDENTIFIER = 'IDENTIFIER'
 NUMBER = 'NUMBER'

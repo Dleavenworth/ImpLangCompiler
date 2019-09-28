@@ -1,5 +1,5 @@
 David Leavenworth III
-Project Phase 1.1
+Project Phase 1.2
 
 There is no compilation, unzip then run main.py with the first argument as the input file, and the second argument as the output file. Example below:
 
