@@ -13,7 +13,6 @@ class BinaryOperator(AST):
 class Num(AST):
     def __init__(self, token):
         self.token = token
-        self.token = token.value
 
 
 class Identifier(AST):
