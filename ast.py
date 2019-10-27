@@ -1,6 +1,8 @@
 
 class AST(object):
-    pass
+    def __init__(self, root):
+        self.root = root
+        self.nodes = []
 
 
 class BinaryOperator(AST):

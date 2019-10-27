@@ -10,7 +10,6 @@ class Parser(object):
         self.current_token = self.tokens[self.counter]
         self.current_raw = self.raw[self.counter]
 
-
     def parse(self):
         return self.parse_expression()
 
@@ -22,18 +21,28 @@ class Parser(object):
         self.current_token = self.tokens[self.counter]
         self.current_raw = self.raw[self.counter]
 
-    def parse_expression(self):
-        node = self.parse_term()
-        while self.current_raw is '+':
+    def parse_element(self):
+        if self.current_raw is '(':
             self.consume_token()
-            node = ast.BinaryOperator(self.parse_term(), '+', self.parse_term())
-        return node
+            node = self.parse_expression()
+            if self.current_raw is ')':
+                self.consume_token()
+                return node
+        if self.current_token is 'IDENTIFIER':
+            node = ast.Identifier(self.current_raw)
+            self.consume_token()
+            return node
+        if self.current_token is 'NUMBER':
+            node = ast.Num(self.current_raw)
+            self.consume_token()
+            return node
+        self.error()
 
-    def parse_term(self):
-        node = self.parse_factor()
-        while self.current_raw is '-':
+    def parse_piece(self):
+        node = self.parse_element()
+        while self.current_raw is '*':
             self.consume_token()
-            node = ast.BinaryOperator(self.parse_factor(), '-', self.parse_factor())
+            node = ast.BinaryOperator(self.parse_element(), '*', self.parse_element())
         return node
 
     def parse_factor(self):
@@ -43,24 +52,16 @@ class Parser(object):
             node = ast.BinaryOperator(self.parse_piece(), '/', self.parse_piece())
         return node
 
-    def parse_piece(self):
-        node = self.parse_element()
-        while self.current_raw is '*':
+    def parse_term(self):
+        node = self.parse_factor()
+        while self.current_raw is '-':
             self.consume_token()
-            node = ast.BinaryOperator(self.parse_element(), '*', self.parse_element())
+            node = ast.BinaryOperator(self.parse_factor(), '-', self.parse_factor())
         return node
 
-    def parse_element(self):
-        if self.current_raw is '(':
+    def parse_expression(self):
+        node = self.parse_term()
+        while self.current_raw is '+':
             self.consume_token()
-            if self.current_raw is ')':
-                self.consume_token()
-                node = self.parse_expression()
-                return node
-        if self.current_token is 'IDENTIFIER':
-            node = ast.Identifier(self.current_raw)
-            return node
-        if self.current_token is 'NUMBER':
-            node = ast.Num(self.current_raw)
-            return node
-        self.error()
+            node = ast.BinaryOperator(self.parse_term(), '+', self.parse_term())
+        return node
