@@ -6,6 +6,8 @@ import sys
 import token_writer
 import scanner
 from Parser import *
+import ast
+
 
 if __name__ == '__main__':
     in_file = sys.argv[1]
@@ -19,3 +21,4 @@ if __name__ == '__main__':
     tree = p.parse()
     with open(out_file, 'w') as f:
         token_writer.token_writer(f, line_results)
+    ast.AST.pre_ord(tree, tree, p.tokens)
