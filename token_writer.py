@@ -4,6 +4,7 @@
 
 
 def token_writer(output_file, token_list):
+    output_file.write("TOKENS: \n")
     for line_tuple in token_list:
         raw, tokens = line_tuple
         output_file.write("LINE: " + raw + '\n')

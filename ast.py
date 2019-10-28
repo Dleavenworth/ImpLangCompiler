@@ -1,11 +1,13 @@
 
 class AST(object):
-    def pre_ord(self, root, depth=0):
+    def pre_ord(self, root, file, depth=0):
+        if depth is 0:
+            file.write("AST: \n")
         if root:
-            print(depth*" " + root.token + " : " + root.token_type)
+            file.write(depth*" " + root.token + " : " + root.token_type + "\n")
             if isinstance(root, BinaryOperator):
-                self.pre_ord(root.left, depth+1)
-                self.pre_ord(root.right, depth+1)
+                self.pre_ord(root.left, file, depth+1)
+                self.pre_ord(root.right, file, depth+1)
 
 
 class BinaryOperator(AST):

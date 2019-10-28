@@ -18,7 +18,7 @@ class Parser(object):
 
     def consume_token(self):
         self.counter += 1
-        if self.counter < 13:
+        if self.counter < len(self.tokens):
             self.current_token = self.tokens[self.counter]
             self.current_raw = self.raw[self.counter]
         else:
