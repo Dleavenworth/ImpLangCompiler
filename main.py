@@ -5,7 +5,7 @@
 import sys
 import token_writer
 import scanner
-from parser import *
+from Parser import *
 import ast
 
 
