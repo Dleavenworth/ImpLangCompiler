@@ -1,25 +1,28 @@
 
 class AST(object):
-    def pre_ord(self, root, token_type, depth=0, indent=4):
+    def pre_ord(self, root, depth=0):
         if root:
-            print(root.token) #+ " : " + token_type[depth+1])
+            print(depth*" " + root.token + " : " + root.token_type)
             if isinstance(root, BinaryOperator):
-                self.pre_ord(root.left, token_type, depth+1, indent)
-                self.pre_ord(root.right, token_type, depth+1, indent)
+                self.pre_ord(root.left, depth+1)
+                self.pre_ord(root.right, depth+1)
 
 
 class BinaryOperator(AST):
-    def __init__(self, left, op, right):
+    def __init__(self, left, op, right, token_type='PUNCTUATION'):
         self.left = left
         self.token = self.op = op
         self.right = right
+        self.token_type = token_type
 
 
 class Num(AST):
-    def __init__(self, token):
+    def __init__(self, token, token_type='NUMBER'):
         self.token = token
+        self.token_type = token_type
 
 
 class Identifier(AST):
-    def __init__(self, token):
+    def __init__(self, token, token_type='IDENTIFIER'):
         self.token = token
+        self.token_type = token_type

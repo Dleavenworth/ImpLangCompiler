@@ -21,4 +21,4 @@ if __name__ == '__main__':
     tree = p.parse()
     with open(out_file, 'w') as f:
         token_writer.token_writer(f, line_results)
-    ast.AST.pre_ord(tree, tree, p.tokens)
+    ast.AST.pre_ord(tree, tree)
