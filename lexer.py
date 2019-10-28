@@ -1,5 +1,5 @@
 # David Leavenworth III
-# Phase 1.2
+# Phase 2.1
 # Credit to Jay Conrod for inspiration: http://jayconrod.com/posts/37/a-simple-interpreter-from-scratch-in-python--part-1-
 # This file is the actual scanner, this is where the regex matches everything, it also returns the final list of tokens
 

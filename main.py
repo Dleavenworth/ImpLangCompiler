@@ -1,11 +1,11 @@
 # David Leavenworth III
-# Phase 1.2
-# This is the test driver code for the lexer
+# Phase 2.1
+# This is the test driver code for the lexer/parser
 
 import sys
 import token_writer
 import scanner
-from Parser import *
+from parser import *
 import ast
 
 

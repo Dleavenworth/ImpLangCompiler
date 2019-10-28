@@ -1,7 +1,7 @@
 David Leavenworth III
-Project Phase 1.2
+Phase 2.1
 
-There is no compilation, unzip then run main.py with the first argument as the input file, and the second argument as the output file. Example below:
+There is no compilation, unzip then run main.py with the first argument as the input file, and the second argument as the output file. This project was written in python3.x not python 2.x. Example below:
 
     unzip DavidLeavenworthProjectPhase1.1.zip
-    python main.py test_input_file.txt output_file.txt
+    python3 main.py test_input_file.txt output_file.txt
