@@ -1,1 +1,1 @@
-if x then x else x endif
+3*(5 + 2 / x - 1)
