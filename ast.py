@@ -4,6 +4,7 @@
 # the AST base class will be a subclass, and a type of node in the tree
 # There is also the pre-order traversal which prints the AST to the outfile, and does it nice and short with recursion
 
+
 class AST(object):
     def pre_ord(self, root, file, depth=0):
         if depth is 0:
@@ -15,21 +16,29 @@ class AST(object):
                 self.pre_ord(root.right, file, depth+4)
 
 
-class BinaryOperator(AST):
-    def __init__(self, left, op, right, token_type='PUNCTUATION'):
+class InteriorNode(AST):
+    def __init__(self, token_type):
+        self.token_type = token_type
+
+
+class LeafNode(AST):
+    def __init__(self, token_type, token):
+        self.token_type = token_type
+        self.token = token
+
+
+class BinaryOperator(InteriorNode):
+    def __init__(self, left, op, right, token_type):
+        super().__init__(token_type)
         self.left = left
         self.token = self.op = op
         self.right = right
-        self.token_type = token_type
 
 
-class Num(AST):
-    def __init__(self, token, token_type='NUMBER'):
+class TerenaryOperator(InteriorNode):
+    def __init__(self, left, right, center, token, token_type):
+        super().__init__(token_type)
         self.token = token
-        self.token_type = token_type
-
-
-class Identifier(AST):
-    def __init__(self, token, token_type='IDENTIFIER'):
-        self.token = token
-        self.token_type = token_type
+        self.left = left
+        self.right = right
+        self.center = center

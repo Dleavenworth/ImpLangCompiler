@@ -5,11 +5,11 @@
 import sys
 import token_writer
 import scanner
-from parser import *
+from Parser import *
 import ast
 
 
-if __name__ == '__main__':
+def main():
     in_file = sys.argv[1]
     out_file = sys.argv[2]
     file = open(in_file)
@@ -22,3 +22,7 @@ if __name__ == '__main__':
     with open(out_file, 'w') as f:
         token_writer.token_writer(f, line_results)
         ast.AST.pre_ord(tree, tree, f)
+
+
+if __name__ == '__main__':
+    main()
