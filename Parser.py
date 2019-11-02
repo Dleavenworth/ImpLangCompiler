@@ -16,7 +16,7 @@ class Parser(object):
         self.current_raw = self.raw[self.counter]
 
     def parse(self):
-        return self.parse_expression()
+        return self.parse_statement()
 
     def error(self):
         raise Exception("Invalid syntax")
@@ -39,22 +39,21 @@ class Parser(object):
     def parse_base_statement(self):
         if self.current_token is 'IDENTIFIER':
             self.consume_token()
-            if self.current_raw is ':=':
-                self.consume_token()
+            if self.current_raw == ":=":
                 node = self.parse_assignment()
                 return node
-        if self.current_raw is 'if':
+        if self.current_raw == 'if':
             self.consume_token()
             node = self.parse_if_statement()
             return node
-        if self.current_raw is 'while':
+        if self.current_raw == 'while':
             self.consume_token()
             node = self.parse_while_statement()
             return node
-        if self.current_raw is 'skip':
-            node = ast.LeafNode('KEYWORD', self.current_raw)
+        if self.current_raw == 'skip':
             self.consume_token()
-            pass
+            node = ast.LeafNode('KEYWORD', self.current_raw)
+            return node
         self.error()
 
     def parse_assignment(self):
@@ -62,8 +61,19 @@ class Parser(object):
         return node
 
     def parse_if_statement(self):
-        node = ast.TerenaryOperator(self.parse_expression(), self.parse_statement(), self.parse_statement(), 'if', 'KEYWORD')
-        return node
+        node1 = self.parse_expression()
+        if self.current_raw == "then":
+            self.consume_token()
+            node2 = self.parse_statement()
+            if self.current_raw == "else":
+                self.consume_token()
+                node3 = self.parse_statement()
+                if self.current_raw == "endif":
+                    self.consume_token()
+                    node = ast.TerenaryOperator(node1, node2, node3,
+                                                'if', 'KEYWORD')
+                    return node
+        self.error()
 
     def parse_while_statement(self):
         node = ast.BinaryOperator(self.parse_expression(), 'while', self.parse_statement(), 'KEYWORD')
