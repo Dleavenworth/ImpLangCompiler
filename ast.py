@@ -6,14 +6,7 @@
 
 
 class AST(object):
-    def pre_ord(self, root, file, depth=0):
-        if depth is 0:
-            file.write("AST: \n")
-        if root:
-            file.write(depth*" " + root.token + " : " + root.token_type + "\n")
-            if isinstance(root, BinaryOperator):
-                self.pre_ord(root.left, file, depth+4)
-                self.pre_ord(root.right, file, depth+4)
+    pass
 
 
 class InteriorNode(AST):
@@ -35,8 +28,8 @@ class BinaryOperator(InteriorNode):
         self.right = right
 
 
-class TerenaryOperator(InteriorNode):
-    def __init__(self, left, right, center, token, token_type):
+class TernaryOperator(InteriorNode):
+    def __init__(self, left, center, right, token, token_type):
         super().__init__(token_type)
         self.token = token
         self.left = left

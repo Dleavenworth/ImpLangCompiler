@@ -1,1 +1,8 @@
-if x+9 then x else y
+z := 0;
+x := 10;
+y := 0;
+
+while x-y do
+    z := z + y;
+    y := y + 1
+endwhile

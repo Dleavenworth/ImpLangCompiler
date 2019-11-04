@@ -4,14 +4,13 @@
 # They each return a node, and when all the functions fall out they'll have created a tree with the nodes in ast.py
 
 import ast
+import util
 
 
 class Parser(object):
     def __init__(self, token_list):
+        self.raw, self.tokens = util.generate_lists(token_list)
         self.counter = 0
-        self.raw, self.tokens = zip(*token_list[0])
-        self.tokens = list(self.tokens)
-        self.raw = list(self.raw)
         self.current_token = self.tokens[self.counter]
         self.current_raw = self.raw[self.counter]
 
@@ -33,15 +32,17 @@ class Parser(object):
         node = self.parse_base_statement()
         while self.current_raw is ';':
             self.consume_token()
-            node = self.parse_base_statement()
+            rhs = self.parse_base_statement()
+            node = ast.BinaryOperator(node, ';', rhs, 'PUNCTUATION')
         return node
 
     def parse_base_statement(self):
         if self.current_token is 'IDENTIFIER':
+            lhs = ast.LeafNode("IDENTIFIER", self.current_raw)
             self.consume_token()
             if self.current_raw == ":=":
-                node = self.parse_assignment()
-                return node
+                self.consume_token()
+                return self.parse_assignment(lhs)
         if self.current_raw == 'if':
             self.consume_token()
             node = self.parse_if_statement()
@@ -56,28 +57,36 @@ class Parser(object):
             return node
         self.error()
 
-    def parse_assignment(self):
-        node = ast.BinaryOperator(self.parse_element(), ':=', self.parse_expression(), 'PUNCTUATION')
+    def parse_assignment(self, lhs):
+        rhs = self.parse_expression()
+        node = ast.BinaryOperator(lhs, ':=', rhs, 'PUNCTUATION')
         return node
 
     def parse_if_statement(self):
-        node1 = self.parse_expression()
+        predicate = self.parse_expression()
         if self.current_raw == "then":
             self.consume_token()
-            node2 = self.parse_statement()
+            true_state = self.parse_statement()
             if self.current_raw == "else":
                 self.consume_token()
-                node3 = self.parse_statement()
+                false_state = self.parse_statement()
                 if self.current_raw == "endif":
                     self.consume_token()
-                    node = ast.TerenaryOperator(node1, node2, node3,
-                                                'if', 'KEYWORD')
+                    node = ast.TernaryOperator(predicate, true_state, false_state, 'if', 'KEYWORD')
                     return node
         self.error()
 
     def parse_while_statement(self):
-        node = ast.BinaryOperator(self.parse_expression(), 'while', self.parse_statement(), 'KEYWORD')
-        return node
+        predicate = self.parse_expression()
+        if self.current_raw == "do":
+            self.consume_token()
+            loop_state = self.parse_statement()
+            self.consume_token()
+            if self.current_raw == "endwhile":
+                node = ast.BinaryOperator(predicate, 'while', loop_state, 'KEYWORD')
+                self.consume_token()
+                return node
+        self.error()
 
     def parse_element(self):
         if self.current_raw is '(':

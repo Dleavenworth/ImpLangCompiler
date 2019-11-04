@@ -3,10 +3,11 @@
 # This is the test driver code for the lexer/parser
 
 import sys
-import token_writer
+
 import scanner
-from Parser import *
-import ast
+import token_writer
+import util
+from Parser import Parser
 
 
 def main():
@@ -21,7 +22,7 @@ def main():
     tree = p.parse()
     with open(out_file, 'w') as f:
         token_writer.token_writer(f, line_results)
-        ast.AST.pre_ord(tree, tree, f)
+        util.pre_ord(tree, f)
 
 
 if __name__ == '__main__':
