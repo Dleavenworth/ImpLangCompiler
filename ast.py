@@ -16,16 +16,16 @@ class InteriorNode(AST):
 
 
 class LeafNode(AST):
-    def __init__(self, token_type, token):
+    def __init__(self, token, token_type):
         self.token_type = token_type
         self.token = token
 
 
 class BinaryOperator(InteriorNode):
-    def __init__(self, left, op, right, token_type):
+    def __init__(self, left, token, right, token_type):
         super().__init__(token_type)
         self.left = left
-        self.token = self.op = op
+        self.token = token
         self.right = right
 
 

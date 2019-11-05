@@ -8,17 +8,20 @@ import util
 
 
 class Parser(object):
-    def __init__(self, token_list):
+    def __init__(self, token_list, file):
         self.raw, self.tokens = util.generate_lists(token_list)
         self.counter = 0
         self.current_token = self.tokens[self.counter]
         self.current_raw = self.raw[self.counter]
+        self.file = file
 
     def parse(self):
         return self.parse_statement()
 
     def error(self):
-        raise Exception("Invalid syntax")
+        self.file.write("Syntax error at token: " + self.current_raw + "\n")
+        self.file.close()
+        raise SystemExit(0)
 
     def consume_token(self):
         self.counter += 1

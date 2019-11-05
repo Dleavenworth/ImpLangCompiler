@@ -14,5 +14,6 @@ def token_writer(output_file, token_list):
                 output_file.write(text + ' : ' + tag)
             else:
                 output_file.write("ERROR READING" + ' "' + text + '"')
+                raise SystemExit(0)
             output_file.write("\n")
         output_file.write("\n")

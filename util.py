@@ -28,14 +28,15 @@ def generate_lists(input_list):
 
 
 def pre_ord(root, file, depth=0):
-    if depth is 0:
-        file.write("AST: \n")
-    if root:
-        file.write(depth * " " + root.token + " : " + root.token_type + "\n")
-        if isinstance(root, ast.TernaryOperator):
-            pre_ord(root.left, file, depth + 4)
-            pre_ord(root.center, file, depth + 4)
-            pre_ord(root.right, file, depth + 4)
-        if isinstance(root, ast.BinaryOperator):
-            pre_ord(root.left, file, depth + 4)
-            pre_ord(root.right, file, depth + 4)
+    if not file.closed:
+        if depth is 0:
+            file.write("AST: \n")
+        if root:
+            file.write(depth * " " + root.token + " : " + root.token_type + "\n")
+            if isinstance(root, ast.TernaryOperator):
+                pre_ord(root.left, file, depth + 4)
+                pre_ord(root.center, file, depth + 4)
+                pre_ord(root.right, file, depth + 4)
+            if isinstance(root, ast.BinaryOperator):
+                pre_ord(root.left, file, depth + 4)
+                pre_ord(root.right, file, depth + 4)

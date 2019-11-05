@@ -18,10 +18,10 @@ def main():
     file.close()
     line_results = scanner.scan_buffer(characters)
     raw, parse_line = zip(*line_results)
-    p = Parser(parse_line)
-    tree = p.parse()
     with open(out_file, 'w') as f:
         token_writer.token_writer(f, line_results)
+        p = Parser(parse_line, f)
+        tree = p.parse()
         util.pre_ord(tree, f)
 
 
