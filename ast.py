@@ -1,8 +1,9 @@
 # David Leavenworth III
-# Phase 2.1
+# Phase 2.2
 # This is the file that defines the tree as a class, each class underneath
-# the AST base class will be a subclass, and a type of node in the tree
-# There is also the pre-order traversal which prints the AST to the outfile, and does it nice and short with recursion
+# the AST base class will have subclasses Leaf, and Interior
+# the InteriorNode subclass will have subclasses, BinaryOperator, and TernaryOperator, which will have 2 and 3 children
+# respectively
 
 
 class AST(object):

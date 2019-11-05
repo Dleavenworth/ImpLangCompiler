@@ -1,5 +1,5 @@
 # David Leavenworth III
-# Phase 2.1
+# Phase 2.2
 # This is a helper function to print out all of the lines to a console
 # it just splits all of the lines into entries in the line_results list
 

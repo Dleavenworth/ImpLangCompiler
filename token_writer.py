@@ -1,5 +1,5 @@
 # David Leavenworth III
-# Phase 1.2
+# Phase 2.2
 # This is a helper function which just prints out the console output
 
 
