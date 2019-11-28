@@ -8,6 +8,7 @@ import scanner
 import token_writer
 import util
 from Parser import Parser
+from interpreter import Interpreter
 
 
 def main():
@@ -23,6 +24,9 @@ def main():
         p = Parser(parse_line, f)
         tree = p.parse()
         util.pre_ord(tree, f)
+        interp = Interpreter(tree, f)
+        final = interp.fill_stack(tree)
+        f.write("\nOutput: " + str(final[0][0]))
 
 
 if __name__ == '__main__':

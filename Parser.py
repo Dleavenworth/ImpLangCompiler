@@ -16,7 +16,7 @@ class Parser(object):
         self.file = file
 
     def parse(self):
-        return self.parse_statement()
+        return self.parse_expression()
 
     def error(self):
         self.file.write("Syntax error at token: " + self.current_raw + "\n")
