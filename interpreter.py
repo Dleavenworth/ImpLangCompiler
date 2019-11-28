@@ -1,3 +1,7 @@
+# David Leavenworth III
+# Phase 3.1
+# This is the interpreter, it flattens the AST into a stack, and simplifies the values from there
+
 import ast
 
 

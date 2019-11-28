@@ -1,5 +1,5 @@
 David Leavenworth III
-Phase 2.2
+Phase 3.1
 
 There is no compilation, unzip then run main.py with the first argument as the input file, and the second argument as the output file. This project was written in python3.x not python 2.x.
 The only file meant to be ran as a script is main.py. Example usage below:

@@ -1,5 +1,5 @@
 # David Leavenworth III
-# Phase 2.2
+# Phase 3.1
 # This is the file that defines the tree as a class, each class underneath
 # the AST base class will have subclasses Leaf, and Interior
 # the InteriorNode subclass will have subclasses, BinaryOperator, and TernaryOperator, which will have 2 and 3 children
