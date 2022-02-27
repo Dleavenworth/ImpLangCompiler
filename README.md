@@ -11,6 +11,8 @@ To run:
 
 Where the input file is a program which follows the above grammar, and the output file is any .txt file.
 
+There is an example input file provided in this repo, it is called main.imp. You can run the program with this file as the input file to see it at work.
+
 This project was written in Python 3.x.
 
 ## Limitations
